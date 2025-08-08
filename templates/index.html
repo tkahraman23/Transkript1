@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ses Dosyasını Metne Dönüştür</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: "Segoe UI", sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: #0d1b2a;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 95%;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .form-control, .btn {
+            border-radius: 10px;
+        }
+
+        .output-box {
+            margin-top: 30px;
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 10px;
+            white-space: pre-wrap;
+            max-height: 300px; /* Scroll için maksimum yükseklik */
+            overflow-y: auto;  /* Scroll aktif */
+        }
+    </style>
+</head>
+<body>
+    <!-- Hareketli soyut arka plan -->
+    <div id="particles-js"></div>
+
+    <div class="container">
+        <h2 class="text-center mb-4">🎙️ Ses Dosyasını Metne Dönüştür</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="file" class="form-label">Ses Dosyası Seç (.mp3 veya .m4a)</label>
+                <input class="form-control" type="file" name="file" id="file" required>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">Yükle ve Dönüştür</button>
+            </div>
+        </form>
+
+        {% if metin %}
+            <div class="output-box mt-1">
+                <h5>🎧 Dönüştürülen Metin:</h5>
+                <p>{{ metin }}</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- particles.js kütüphanesi -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script>
+        particlesJS.load('particles-js', '/static/particles.json', function() {
+            console.log('particles.js yüklendi.');
+        });
+    </script>
+</body>
+</html>
